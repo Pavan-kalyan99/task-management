@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Modal, Box, TextField, MenuItem, Button } from '@mui/material';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../firebaseAuth/Firebase'; // Firestore instance
-import { Timestamp } from 'firebase/firestore';
+// import { addDoc, collection } from 'firebase/firestore';
+// import { db } from '../firebaseAuth/Firebase'; // Firestore instance
 import { getDatabase, ref, push,set } from "firebase/database";
 import { fetchTasks } from '../redux/slice/TaskSlice';
 import { useDispatch } from 'react-redux';

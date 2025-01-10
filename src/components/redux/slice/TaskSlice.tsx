@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk ,PayloadAction } from '@reduxjs/toolkit';
 import { getDatabase, ref, get } from 'firebase/database';
-import { db } from '../../firebaseAuth/Firebase'; // Firebase Realtime Database reference
+// import { db } from '../../firebaseAuth/Firebase'; // Firebase Realtime Database reference
 
 // Initial State
 interface Task {

@@ -43,9 +43,11 @@ const initialColumns: Record<string, Column> = {
 };
 
 const handleDragEnd: React.FC = () => {
+  // eslint-disable-next-line no-unused-vars
+
   const [tasks, setTasks] = useState(initialTasks);
   const [columns, setColumns] = useState(initialColumns);
-
+  // eslint-disable-next-line no-unused-vars
   const onDragEnd = (result: any) => {
     const { destination, source, draggableId } = result;
 

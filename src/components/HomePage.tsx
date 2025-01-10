@@ -11,10 +11,11 @@ const HomePage:React.FC= () => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      // eslint-disable-next-line no-unused-vars
       const user = result.user;
       navigate('/dashboard');  // Redirect to dashboard after successful login
     } catch (error) {
-      console.error('Error during Google sign-in:', error?.message);
+      console.error('Error during Google sign-in:', error);
     }
   };
 

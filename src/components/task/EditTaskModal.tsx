@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Box, TextField, Button } from "@mui/material";
-import { getDatabase, ref, update ,} from "firebase/database";
-import { doc, updateDoc } from "firebase/firestore";
+import {  ref, update ,} from "firebase/database";
+// import {   } from "firebase/firestore";
 import { db } from "../firebaseAuth/Firebase";
-import { fetchTasks, updateTask } from "../redux/slice/TaskSlice";
+import { fetchTasks,  } from "../redux/slice/TaskSlice";
 import { useDispatch } from "react-redux";
 import { setAlertMessage } from "../redux/slice/alertSlice";
 

@@ -3,10 +3,11 @@ import Header from './Header'
 import AddTaskModal from './task/AddtaskModel'
 import MainDashboard from './userTasks/MainDashboard';
 import useDebounce from './hooks/useDebounce';
-import { Box, Dialog,Grid,Stack, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
+// eslint-disable-next-line no-unused-vars
+import { Box, Dialog, Button } from '@mui/material';
 import { FiSearch } from "react-icons/fi";
-import { AiOutlinePlus } from "react-icons/ai";
-import DragAndDropTasks from './userTasks/DragAndDropTasks';
+// import { AiOutlinePlus } from "react-icons/ai";
+// import DragAndDropTasks from './userTasks/DragAndDropTasks';
 import { FaListAlt } from "react-icons/fa";
 import { BsClipboardDataFill } from "react-icons/bs";
 import dayjs from 'dayjs';
@@ -15,16 +16,21 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { pickersLayoutClasses } from '@mui/x-date-pickers/PickersLayout';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { ref, update } from "firebase/database";
-import { db } from './firebaseAuth/Firebase';
+// eslint-disable-next-line no-unused-vars
+// import { ref, update } from "firebase/database";
+// eslint-disable-next-line no-unused-vars
+// import { db } from './firebaseAuth/Firebase';
+// eslint-disable-next-line no-unused-vars
+
+// import LogOut from './auth/LogOut';
 
 
 interface DateRange {
-  startDate: Dayjs | null;
-  endDate: Dayjs | null;
+  startDate: Date | null;
+  endDate: Date | null;
 }
 const Dashboard:React.FC = () => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [taskopen,setTaskOpen]=useState(false);
 
   const handleOpen = () => setTaskOpen(true);
@@ -45,7 +51,7 @@ const Dashboard:React.FC = () => {
   };
   
 // date range change
-  const handleDateChange = (newValue: [Dayjs | null, Dayjs | null]) => {
+  const handleDateChange = (newValue: [Date | null, Date | null]) => {
     setDateRange({
       startDate: newValue[0],
       endDate: newValue[1],
@@ -93,8 +99,11 @@ const Dashboard:React.FC = () => {
           <FaListAlt/>
 
           </div>
+          
 
          <div>List</div>
+        
+
         </div>
         <div
           className={`px-4 flex py-2 ${selectedTab === "board" ? "border-b-2 border-blue-500" : ""}`}
@@ -105,7 +114,13 @@ const Dashboard:React.FC = () => {
           <BsClipboardDataFill />
           </div>
           <div>Board  </div>
+        
         </div>
+        {/* <div className='flex ' style={{}}>  
+          
+          <LogOut/>
+         
+         </div> */}
         </div>
         {/* ------------ */}
        <div className="flex flex-wrap items-center justify-between p-4 bg-gray-100 border border-gray-300 rounded-md">

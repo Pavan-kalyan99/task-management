@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = () => {
             )}
           </div>
         </div>
-        <p className='text-center mt-3'>{user?.displayName || 'No Name'}</p>
+        <p className='text-center mt-3 text-ellipsis overflow-hidden whitespace-nowrap w-16 lg:w-40'>{user?.displayName || 'No Name'}</p>
       </div>
     
     </div>

@@ -3,34 +3,34 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
+  // TableContainer,
   TableHead,
   TableRow,
   Paper,
-  Collapse,
+  // Collapse,
   Box,
   Typography,
-  MenuItem, Select 
+  // MenuItem, Select 
 
 } from "@mui/material";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Grid from "@mui/material/Grid2";
-import { IoIosCheckmarkCircle } from "react-icons/io";
+// import { IoIosCheckmarkCircle } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa";
-import Checkbox from '@mui/material/Checkbox';
+// import Checkbox from '@mui/material/Checkbox';
 
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTasks } from "../redux/slice/TaskSlice";
 import { AppDispatch, RootState } from "../redux/slice/store";
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { HiDotsHorizontal } from "react-icons/hi";
 import EditTaskModal from "../task/EditTaskModal";
 import { getDatabase, ref, remove ,push,set,update} from "firebase/database";
-import DragAndDropTasks from "./DragAndDropTasks";
-import {taskUpdate} from "../task/taskUpdate";
+// import DragAndDropTasks from "./DragAndDropTasks";
+// import {taskUpdate} from "../task/taskUpdate";
 import { setAlertMessage } from "../redux/slice/alertSlice";
 import { db } from "../firebaseAuth/Firebase";
 interface Task {
@@ -51,6 +51,7 @@ interface MainDashboardProps {
 }
 const MainDashboard: React.FC <MainDashboardProps>= ({selectedCategory ,searchQuery,type,dateRange}) => {
   const dispatch = useDispatch<AppDispatch>();
+  // eslint-disable-next-line no-unused-vars
   const { tasks, loading, error } = useSelector((state: RootState) => state.tasks);
   const  state  = useSelector((state: RootState) => state);
   
@@ -66,6 +67,7 @@ const MainDashboard: React.FC <MainDashboardProps>= ({selectedCategory ,searchQu
   // if (error) {
   //   return <div>Error: {error}</div>;
   // }
+  // eslint-disable-next-line no-unused-vars
   const [tasksD, setTasks] = useState<Task[]>([
     //{title:'',dueDate:''  }, 
     // { id: 1, title: "Interview with Design Team", dueDate: "Today", status: "To-Do", category: "Work" },
@@ -185,6 +187,7 @@ const filteredByDueDate = dateRange.startDate && dateRange.endDate
   //   return "No Date";
   // };
   //
+  // eslint-disable-next-line no-unused-vars
   const formatDueDate = (dueDate: { seconds: number; nanoseconds: number }): string => {
     if (!dueDate || !dueDate.seconds) return "No Date"; // Handle invalid or missing dates
     const date = new Date(dueDate.seconds * 1000); // Convert seconds to milliseconds
@@ -214,6 +217,8 @@ const toggleMenu = (taskId: number) => {
 // if(type==='board'){
 //   setMenuVisibility('');
 // }
+
+  // eslint-disable-next-line no-unused-vars
 const handleEditTask1 = (task: any,open:boolean) => {
   // dispatch(EditTaskModal(task, open={open}) ); // Replace with your Redux action
  // dispatch(EditTaskModal(task,open)); // Replace with your Redux action
