@@ -26,8 +26,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
 interface DateRange {
-  startDate: Date | null;
-  endDate: Date | null;
+  startDate: any | null;
+  endDate: any | null;
 }
 const Dashboard:React.FC = () => {
   // const [open, setOpen] = useState(false);
@@ -38,7 +38,7 @@ const Dashboard:React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearch = useDebounce(searchQuery, 1000);
-  const [selectedTab, setSelectedTab] = useState("list"); // State for active tab
+  const [selectedTab, setSelectedTab] = useState<any>("list"); // State for active tab
 
   const [showDatePicker, setShowDatePicker] = useState(false);
 

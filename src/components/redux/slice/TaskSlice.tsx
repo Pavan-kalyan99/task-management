@@ -40,7 +40,7 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
     if (snapshot.exists()) {
       const tasks = Object.entries(snapshot.val() || {}).map(([key, value]) => ({
         id: key, // Include the unique key as `id`
-        ...value,
+        ...(value as Record<any, unknown>), // Assert that `value` is an object
       }));
       return tasks;
     } else {
@@ -74,7 +74,14 @@ const taskSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchTasks.fulfilled, (state, action) => {
-        state.tasks = action.payload;
+        // state.tasks = action.payload;
+        state.tasks = action.payload.map((task: Partial<Task>) => ({
+          id: task.id || '',
+          title: task.title || 'Untitled',
+          dueDate: task.dueDate || 'No Due Date',
+          status: task.status || 'Pending',
+          category: task.category || 'General',
+        }));
         state.loading = false;
       })
       .addCase(fetchTasks.rejected, (state, action) => {

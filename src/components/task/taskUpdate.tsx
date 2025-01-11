@@ -4,6 +4,7 @@ import { db } from "./../firebaseAuth/Firebase"; // Replace with your actual Fir
 import { useDispatch } from "react-redux";
 import { setAlertMessage } from "../redux/slice/alertSlice";
 import { fetchTasks } from "../redux/slice/TaskSlice";
+import { AppDispatch } from "../redux/slice/store";
 
 interface TaskUpdateProps {
   taskId: string;
@@ -40,7 +41,7 @@ export const taskUpdate = async ({ taskId, newStatus }: TaskUpdateProps): Promis
 //     handleSave();
 //   }, [taskId, newStatus]);
 
-  return null; // This component doesn't render anything visible
+  return; // This component doesn't render anything visible
 };
 
  //export default taskUpdate;

@@ -6,6 +6,7 @@ import { getDatabase, ref, push,set } from "firebase/database";
 import { fetchTasks } from '../redux/slice/TaskSlice';
 import { useDispatch } from 'react-redux';
 import { setAlertMessage } from '../redux/slice/alertSlice';
+import { AppDispatch } from '../redux/slice/store';
 // Modal Styles
 const modalStyle = {
   position: 'absolute' as 'absolute',

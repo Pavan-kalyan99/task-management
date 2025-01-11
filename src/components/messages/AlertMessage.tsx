@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Snackbar, Alert } from '@mui/material';
-import { RootState } from '../redux/store';
+import { RootState } from '../redux/slice/store';
 import { clearAlertMessage } from '../redux/slice/alertSlice';
+import { AppDispatch } from '../redux/slice/store';
 
 const AlertMessage: React.FC = () => {
 //   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const AlertMessage: React.FC = () => {
       severity={alert.severity || 'info'} // Fallback severity
       variant="filled"
     >
-      {alert.message || 'Something went wrong'} {/* Fallback message */}
+      {alert.message || ''} {/* Fallback message */}
     </Alert>
   </Snackbar>
   );

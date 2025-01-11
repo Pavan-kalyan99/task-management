@@ -14,7 +14,7 @@ import {
 
 } from "@mui/material";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import Grid from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 // import { IoIosCheckmarkCircle } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa";
 // import Checkbox from '@mui/material/Checkbox';
@@ -52,8 +52,8 @@ interface MainDashboardProps {
 const MainDashboard: React.FC <MainDashboardProps>= ({selectedCategory ,searchQuery,type,dateRange}) => {
   const dispatch = useDispatch<AppDispatch>();
   // eslint-disable-next-line no-unused-vars
-  const { tasks, loading, error } = useSelector((state: RootState) => state.tasks);
-  const  state  = useSelector((state: RootState) => state);
+  const { tasks,  } = useSelector((state: RootState) => state.tasks);
+  // const  state  = useSelector((state: RootState) => state);
   
    //console.log('state type:',type);
   // console.log('main task:',tasks);
@@ -68,16 +68,16 @@ const MainDashboard: React.FC <MainDashboardProps>= ({selectedCategory ,searchQu
   //   return <div>Error: {error}</div>;
   // }
   // eslint-disable-next-line no-unused-vars
-  const [tasksD, setTasks] = useState<Task[]>([
-    //{title:'',dueDate:''  }, 
-    // { id: 1, title: "Interview with Design Team", dueDate: "Today", status: "To-Do", category: "Work" },
-    // { id: 2, title: "Team Meeting", dueDate: "30 Dec, 2024", status: "To-Do", category: "Personal" },
-    // { id: 3, title: "Design a Dashboard page", dueDate: "31 Dec, 2024", status: "To-Do", category: "Work" },
-    // { id: 4, title: "Morning Workout", dueDate: "Today", status: "In-Progress", category: "Work" },
-    // { id: 5, title: "Code Review", dueDate: "Today", status: "In-Progress", category: "Personal" },
-    // { id: 6, title: "Submit Project Proposal", dueDate: "Today", status: "Completed", category: "Work" },
+  // const [tasksD, setTasks] = useState<Task[]>([
+  //   //{title:'',dueDate:''  }, 
+  //   // { id: 1, title: "Interview with Design Team", dueDate: "Today", status: "To-Do", category: "Work" },
+  //   // { id: 2, title: "Team Meeting", dueDate: "30 Dec, 2024", status: "To-Do", category: "Personal" },
+  //   // { id: 3, title: "Design a Dashboard page", dueDate: "31 Dec, 2024", status: "To-Do", category: "Work" },
+  //   // { id: 4, title: "Morning Workout", dueDate: "Today", status: "In-Progress", category: "Work" },
+  //   // { id: 5, title: "Code Review", dueDate: "Today", status: "In-Progress", category: "Personal" },
+  //   // { id: 6, title: "Submit Project Proposal", dueDate: "Today", status: "Completed", category: "Work" },
   
-  ]);
+  // ]);
 
   const [newTask, setNewTask] = useState({ id:'', title: "", dueDate: "", status: "", category: "" });
   const [showForm, setShowForm] = useState(false);
@@ -188,22 +188,22 @@ const filteredByDueDate = dateRange.startDate && dateRange.endDate
   // };
   //
   // eslint-disable-next-line no-unused-vars
-  const formatDueDate = (dueDate: { seconds: number; nanoseconds: number }): string => {
-    if (!dueDate || !dueDate.seconds) return "No Date"; // Handle invalid or missing dates
-    const date = new Date(dueDate.seconds * 1000); // Convert seconds to milliseconds
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    }); // Format as "Jan 8, 2025"
-  };
+  // const formatDueDate = (dueDate: { seconds: number; nanoseconds: number }): string => {
+  //   if (!dueDate || !dueDate.seconds) return "No Date"; // Handle invalid or missing dates
+  //   const date = new Date(dueDate.seconds * 1000); // Convert seconds to milliseconds
+  //   return date.toLocaleDateString("en-US", {
+  //     month: "short",
+  //     day: "numeric",
+  //     year: "numeric",
+  //   }); // Format as "Jan 8, 2025"
+  // };
 
 // ========================task edit and update
 const [menuVisibility, setMenuVisibility] = useState<number | null>(null);
 const [task_status, settask_status] = useState<string | ''>('');
 
 const [isModalOpen, setIsModalOpen] = useState(false);
-const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+const [selectedTask, setSelectedTask] = useState<Task | any>(null);
 
 const handleEditTask = (task: Task) => {
   console.log('edit task:',task);
@@ -219,15 +219,15 @@ const toggleMenu = (taskId: number) => {
 // }
 
   // eslint-disable-next-line no-unused-vars
-const handleEditTask1 = (task: any,open:boolean) => {
-  // dispatch(EditTaskModal(task, open={open}) ); // Replace with your Redux action
- // dispatch(EditTaskModal(task,open)); // Replace with your Redux action
- <EditTaskModal
- task={selectedTask}
- isOpen={isModalOpen}
- onClose={() => setIsModalOpen(false)}
-/>
-};
+// const handleEditTask1 = (task: any,open:boolean) => {
+//   // dispatch(EditTaskModal(task, open={open}) ); // Replace with your Redux action
+//  // dispatch(EditTaskModal(task,open)); // Replace with your Redux action
+//  <EditTaskModal
+//  task={selectedTask}
+//  isOpen={isModalOpen}
+//  onClose={() => setIsModalOpen(false)}
+// />
+// };
 
 // ddelete task 
 const handleDeleteTask = async(taskId: number) => {
@@ -253,9 +253,9 @@ const handleDeleteTask = async(taskId: number) => {
 // ======list task status is  updating============
   // const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 
-  const handleClose = () => {
-    settask_status('');
-  };
+  // const handleClose = () => {
+  //   settask_status('');
+  // };
 const handleStatusChange = async(event: React.ChangeEvent<HTMLSelectElement>) => {
   const selectedStatus = event.target.value;
   if(selectedStatus && task_status){
@@ -291,7 +291,7 @@ const handleStatusChange = async(event: React.ChangeEvent<HTMLSelectElement>) =>
   //setNewStatus(selectedStatus);
 };
 
-const toggleStatus = (taskId: string,) => {
+const toggleStatus = (taskId: any,) => {
   settask_status((prev) => (prev === taskId ? '' : taskId));
 };
 // const setIsEditingHandle=({task})=>{
@@ -299,7 +299,7 @@ const toggleStatus = (taskId: string,) => {
 // setNewStatus(task.status)
 // }
 const handleBlur = () => {
- setIsEditing(false);
+// setIsEditing(false);
 
   // Call API only if the status has changed
  // if (newStatus !== task.status) {
@@ -502,7 +502,7 @@ if (type==='list'){
             expandedSections[status] &&
               groupedTasks[status]?.map((task: Task) => (
                 <TableRow key={task.id}  className="bg-slate-100">
-                       <TableCell padding="" style={{paddingLeft:'20px',paddingRight:'0px',margin:'0px',width:'0px'}}>
+                       <TableCell  style={{paddingLeft:'20px',paddingRight:'0px',margin:'0px',width:'0px'}}>
                        {status === 'completed' ? (
                        <FaCheckCircle color="green"/>) : <FaCheckCircle />
 
@@ -527,7 +527,7 @@ if (type==='list'){
             value={task.status}
             onChange={handleStatusChange}
             onBlur={handleBlur} // API call made when the select loses focus
-            onClose={handleClose}
+           // onClose={handleClose}
             // open='false'
 
             // autoWidth
@@ -537,7 +537,7 @@ if (type==='list'){
             <option value="completed">Completed</option>
           </select>
         ) : (
-           <span onClick={()=>toggleStatus(task.id)} style={{ cursor: 'pointer' }}>
+           <span onClick={()=>toggleStatus(task?.id)} style={{ cursor: 'pointer' }}>
              {task.status}
            </span>
         )}
@@ -572,7 +572,7 @@ if (type==='list'){
               ))}
               {isModalOpen && selectedTask && (
   <EditTaskModal
-    task={selectedTask}
+    task={selectedTask} 
     isOpen={isModalOpen}
     onClose={() => setIsModalOpen(false)}
   />
@@ -618,7 +618,7 @@ return(
   }`} >
                     {status.charAt(0).toUpperCase() + status.slice(1) }
                   </Typography>
-                  {groupedTasks[status]?.map((task, index) => (
+                  {groupedTasks[status]?.map((task:any, index:any) => (
                     <Draggable
                       key={task.id}
                       draggableId={task.id}
@@ -638,7 +638,7 @@ return(
                           }}
                         >
                           <div className="flex justify-between h-48">
-                          <Typography variant="" className={`font-bold text-2xl ${status==='completed'? 'line-through' :''} `} >
+                          <Typography  className={`font-bold text-2xl ${status==='completed'? 'line-through' :''} `} >
                             {task.title}
                           </Typography>
                           <Typography>

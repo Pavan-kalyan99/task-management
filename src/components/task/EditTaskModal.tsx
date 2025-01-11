@@ -6,6 +6,7 @@ import { db } from "../firebaseAuth/Firebase";
 import { fetchTasks,  } from "../redux/slice/TaskSlice";
 import { useDispatch } from "react-redux";
 import { setAlertMessage } from "../redux/slice/alertSlice";
+import { AppDispatch } from "../redux/slice/store";
 
 interface Task {
   id: string;
@@ -18,6 +19,7 @@ interface Task {
 
 interface EditTaskModalProps {
   task: Task;
+
   isOpen: boolean;
   onClose: () => void;
 }
