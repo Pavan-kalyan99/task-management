@@ -211,6 +211,8 @@ const handleEditTask = (task: Task) => {
   //  console.log('edit task:',task);
   setSelectedTask(task);
   setIsModalOpen(true);
+  setvisibleDots(false);
+
 };
 
 const toggleMenu = (taskId: number) => {
@@ -508,77 +510,70 @@ if (type==='list'){
             {/* Task Rows */}
             {/* {JSON.stringify(groupedTasks)} */}
             {
-            expandedSections[status] &&
-              groupedTasks[status]?.map((task: Task) => (
-                <TableRow key={task.id}  className="bg-slate-100">
-                       <TableCell  style={{paddingLeft:'20px',paddingRight:'0px',margin:'0px',width:'0px'}}>
-                       {status === 'completed' ? (
-                       <FaCheckCircle color="green"/>) : <FaCheckCircle />
+  expandedSections[status] &&
+    (groupedTasks[status]?.length > 0 ? (
+      groupedTasks[status].map((task: Task) => (
+        <TableRow key={task.id} className="bg-slate-100">
+          <TableCell style={{ paddingLeft: '20px', paddingRight: '0px', margin: '0px', width: '0px' }}>
+            {status === 'completed' ? <FaCheckCircle color="green" /> : <FaCheckCircle />}
+          </TableCell>
 
-                       }
+          <TableCell align="left">
+            <span className={`${status === 'completed' ? 'line-through' : ''}`}>{task.title}</span>
+          </TableCell>
 
+          <TableCell align="right">{task.dueDate}</TableCell>
+
+          <TableCell align="right">
+            {task_status === task.id.toString() ? (
+              <select
+                value={task.status}
+                onChange={handleStatusChange}
+                onBlur={handleBlur}
+              >
+                <option value="todo">Todo</option>
+                <option value="inprogress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
+            ) : (
+              <span onClick={() => toggleStatus(task?.id)} style={{ cursor: 'pointer' }}>
+                {task.status}
+              </span>
+            )}
+          </TableCell>
+
+          <TableCell align="right">{task.category}</TableCell>
+
+          <TableCell align="right">
+            <HiDotsHorizontal onClick={() => toggleMenu(task.id)} className="cursor-pointer" />
+            {visibleDots && menuVisibility === task.id && (
+              <div className="absolute bg-white border rounded shadow-md z-10">
+                <button
+                  onClick={() => handleEditTask(task)}
+                  className="block px-4 py-2 text-left w-full hover:bg-gray-100"
+                >
+                  Edit Task
+                </button>
+                <button
+                  onClick={() => handleDeleteTask(task.id)}
+                  className="block px-4 py-2 text-left w-full hover:bg-gray-100"
+                >
+                  Delete Task
+                </button>
+              </div>
+            )}
+          </TableCell>
+        </TableRow>
+      ))
+    ) : (
+      <TableRow className="bg-slate-100">
+        <TableCell colSpan={6} align="center" className="text-gray-500">
+          No tasks available
         </TableCell>
+      </TableRow>
+    ))
+}
 
-                    <TableCell align="left">
-                    {/* {status === 'completed' ? (
-    <IoIosCheckmarkCircle />
-  ) : (
-    <FaCheckCircle />
-  )} */}
-  <span className={` ${status==='completed'? 'line-through' :''} `}>{task.title}</span>
-</TableCell>
-                  <TableCell align="right">{task.dueDate}</TableCell>
-                  {/* <TableCell align="right">{formatDueDate(task.dueDate)}</TableCell> */}
-                  {/* <TableCell align="right">{task.status}</TableCell> */}
-                  <TableCell align="right">
-                  {task_status === task.id.toString()  ? (
-          <select
-            value={task.status}
-            onChange={handleStatusChange}
-            onBlur={handleBlur} // API call made when the select loses focus
-           // onClose={handleClose}
-            // open='false'
-
-            // autoWidth
-          >
-            <option value="todo">Todo</option>
-            <option value="inprogress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
-        ) : (
-           <span onClick={()=>toggleStatus(task?.id)} style={{ cursor: 'pointer' }}>
-             {task.status}
-           </span>
-        )}
-
-                  </TableCell>
-
-                  <TableCell align="right">{task.category}</TableCell>
-                  <TableCell align='right'>
-
-                  <HiDotsHorizontal onClick={() => toggleMenu(task.id)} className="cursor-pointer" />
-    {visibleDots && menuVisibility === task.id && (
-      <div className="absolute bg-white border rounded shadow-md z-10">
-        <button
-          onClick={() => handleEditTask(task)}
-          className="block px-4 py-2 text-left w-full hover:bg-gray-100"
-        >
-          Edit Task
-        </button>
-        {/* delete task */}
-
-        <button
-          onClick={() => handleDeleteTask(task.id)}
-          className="block px-4 py-2 text-left w-full hover:bg-gray-100"
-        >
-          Delete Task
-        </button>
-      </div>
-    )}
-                  
-                  </TableCell>
-                </TableRow>
-              ))}
               {isModalOpen && selectedTask && (
   <EditTaskModal
     task={selectedTask} 
@@ -627,7 +622,7 @@ return(
   }`} >
                     {status.charAt(0).toUpperCase() + status.slice(1) }
                   </Typography>
-                  {groupedTasks[status]?.map((task:any, index:any) => (
+                  { groupedTasks[status]?.length >0? groupedTasks[status]?.map((task:any, index:any) => (
                     <Draggable
                       key={task.id}
                       draggableId={task.id}
@@ -653,7 +648,7 @@ return(
                           <Typography>
                            {/* more  ... option here */}
                            <HiDotsHorizontal onClick={() => toggleMenu(task.id)} className="cursor-pointer" />
-    {menuVisibility === task.id && (
+    {visibleDots && menuVisibility === task.id && (
       <div className="absolute bg-white border rounded shadow-md z-10">
         <button
           onClick={() => handleEditTask(task)}
@@ -691,7 +686,7 @@ return(
                         </Paper>
                       )}
                     </Draggable>
-                  ))}
+                  )) : "No tasks available"}
                   {provided.placeholder}
                 </Box>
               )}
