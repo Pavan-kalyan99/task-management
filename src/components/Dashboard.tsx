@@ -16,6 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { pickersLayoutClasses } from '@mui/x-date-pickers/PickersLayout';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import LogOut from './auth/LogOut';
 // eslint-disable-next-line no-unused-vars
 // import { ref, update } from "firebase/database";
 // eslint-disable-next-line no-unused-vars
@@ -89,39 +90,39 @@ const Dashboard:React.FC = () => {
         {/* <h1>Dashboard page</h1> */}
         <Header/>
           {/* tabs */}
-       <div className="flex space-x-4 border-b border-gray-300 mb-4">
+          <div className="flex justify-between items-center border-b border-gray-300 mb-4">
+  {/* Left-side tabs */}
+  <div className="flex space-x-4">
+    <div
+      className={`px-4 flex py-2 ${
+        selectedTab === "list" ? "border-b-2 border-blue-500" : ""
+      }`}
+      onClick={() => setSelectedTab("list")}
+    >
+      <div className="m-1">
+        <FaListAlt />
+      </div>
+      <div>List</div>
+    </div>
+    <div
+      className={`px-4 flex py-2 ${
+        selectedTab === "board" ? "border-b-2 border-blue-500" : ""
+      }`}
+      onClick={() => setSelectedTab("board")}
+    >
+      <div className="m-1">
+        <BsClipboardDataFill />
+      </div>
+      <div>Board</div>
+    </div>
+  </div>
 
-        <div
-          className={`px-4 flex py-2 ${selectedTab === "list" ? "border-b-2 border-blue-500" : ""}`}
-          onClick={() => setSelectedTab("list")}
-        >
-          <div className='m-1'>
-          <FaListAlt/>
+  {/* Right-side Logout button */}
+  <div>
+    <LogOut />
+  </div>
+</div>
 
-          </div>
-          
-
-         <div>List</div>
-        
-
-        </div>
-        <div
-          className={`px-4 flex py-2 ${selectedTab === "board" ? "border-b-2 border-blue-500" : ""}`}
-          onClick={() => setSelectedTab("board")}
-        >
-          <div className='m-1'>
-
-          <BsClipboardDataFill />
-          </div>
-          <div>Board  </div>
-        
-        </div>
-        {/* <div className='flex ' style={{}}>  
-          
-          <LogOut/>
-         
-         </div> */}
-        </div>
         {/* ------------ */}
        <div className="flex flex-wrap items-center justify-between p-4 bg-gray-100 border border-gray-300 rounded-md">
     

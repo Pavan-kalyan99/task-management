@@ -6,6 +6,7 @@ import { getDatabase, ref, get } from 'firebase/database';
 interface Task {
   id: string;
   title: string;
+  description:string;
   dueDate: string;
   status: string;
   category: string;
@@ -78,6 +79,7 @@ const taskSlice = createSlice({
         state.tasks = action.payload.map((task: Partial<Task>) => ({
           id: task.id || '',
           title: task.title || 'Untitled',
+          description:task.description || '',
           dueDate: task.dueDate || 'No Due Date',
           status: task.status || 'Pending',
           category: task.category || 'General',

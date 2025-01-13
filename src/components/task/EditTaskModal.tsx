@@ -25,6 +25,7 @@ interface EditTaskModalProps {
 }
 
 const EditTaskModal: React.FC<EditTaskModalProps> = ({ task, isOpen, onClose }) => {
+  console.log('task,',task);
   const [updatedTask, setUpdatedTask] = useState({
     title: task.title,
     description: task.description,
@@ -70,7 +71,7 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({ task, isOpen, onClose }) 
       
       onClose();
     } catch (error) {
-      dispatch(setAlertMessage({ message: 'Task in Updating Task', severity: 'error' }));
+      dispatch(setAlertMessage({ message: 'Error in Updating the task', severity: 'error' }));
 
       console.error("Error updating task:", error);
     }
@@ -135,11 +136,11 @@ const EditTaskModal: React.FC<EditTaskModalProps> = ({ task, isOpen, onClose }) 
           onChange={handleChange}
         />
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-          <Button variant="contained" color="primary" onClick={handleSave}>
-            Save
-          </Button>
           <Button variant="outlined" color="secondary" onClick={onClose}>
             Cancel
+          </Button>
+          <Button variant="contained" color="primary" onClick={handleSave}>
+            Save
           </Button>
         </Box>
       </Box>

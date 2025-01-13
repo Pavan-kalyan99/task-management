@@ -173,6 +173,7 @@ const filteredByDueDate = dateRange.startDate && dateRange.endDate
     groups[task.status] = [...(groups[task.status] || []), task];
     return groups;
   }, {});
+  console.log(groupedTasks)
   //  if (type ==='board'){
   //   return(
   //     <div>board</div>
@@ -200,20 +201,27 @@ const filteredByDueDate = dateRange.startDate && dateRange.endDate
 
 // ========================task edit and update
 const [menuVisibility, setMenuVisibility] = useState<number | null>(null);
+const [visibleDots,setvisibleDots] =useState(false);
 const [task_status, settask_status] = useState<string | ''>('');
 
 const [isModalOpen, setIsModalOpen] = useState(false);
 const [selectedTask, setSelectedTask] = useState<Task | any>(null);
 
 const handleEditTask = (task: Task) => {
-  console.log('edit task:',task);
+   console.log('edit task:',task);
   setSelectedTask(task);
   setIsModalOpen(true);
 };
 
 const toggleMenu = (taskId: number) => {
   setMenuVisibility((prev) => (prev === taskId ? null : taskId));
+  setvisibleDots(true);
 };
+const handleEditModal =()=>{
+  setIsModalOpen(false);
+  setvisibleDots(false);
+}
+
 // if(type==='board'){
 //   setMenuVisibility('');
 // }
@@ -240,6 +248,7 @@ const handleDeleteTask = async(taskId: number) => {
 
     dispatch(setAlertMessage({ message: 'Task is Deleted ', severity: 'success' }));
    dispatch(fetchTasks())
+   setvisibleDots(false)
     
 
     // console.log(`Task with ID ${taskId} deleted successfully`);
@@ -548,7 +557,7 @@ if (type==='list'){
                   <TableCell align='right'>
 
                   <HiDotsHorizontal onClick={() => toggleMenu(task.id)} className="cursor-pointer" />
-    {menuVisibility === task.id && (
+    {visibleDots && menuVisibility === task.id && (
       <div className="absolute bg-white border rounded shadow-md z-10">
         <button
           onClick={() => handleEditTask(task)}
@@ -574,7 +583,7 @@ if (type==='list'){
   <EditTaskModal
     task={selectedTask} 
     isOpen={isModalOpen}
-    onClose={() => setIsModalOpen(false)}
+    onClose={handleEditModal}
   />
               )}
           </React.Fragment>

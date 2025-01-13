@@ -10,6 +10,7 @@ const LogOut:React.FC = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth); // Sign the user out
+      
       console.log('User logged out');
       navigate('/'); // Redirect to the login page
     } catch (error) {
@@ -18,8 +19,8 @@ const LogOut:React.FC = () => {
   };
 
   return (
-    <div>
-      <Button onClick={handleLogout}>LogOut</Button>
+    <div className='bg-orange-500 text-white rounded m-1'>
+      <Button onClick={handleLogout}  variant="contained" color="error" >LogOut</Button>
     </div>
   )
 }
