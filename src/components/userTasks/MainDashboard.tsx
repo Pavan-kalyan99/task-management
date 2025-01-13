@@ -115,7 +115,7 @@ const MainDashboard: React.FC <MainDashboardProps>= ({selectedCategory ,searchQu
             dispatch(fetchTasks())
 
 
-            console.log("Task added successfully");
+            // console.log("Task added successfully");
           } catch (error) {
             console.error("Error adding task:", error);
             dispatch(setAlertMessage({ message: 'Failed to add Task', severity: 'error' }));
@@ -173,7 +173,7 @@ const filteredByDueDate = dateRange.startDate && dateRange.endDate
     groups[task.status] = [...(groups[task.status] || []), task];
     return groups;
   }, {});
-  console.log(groupedTasks)
+  // console.log(groupedTasks)
   //  if (type ==='board'){
   //   return(
   //     <div>board</div>
@@ -208,7 +208,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 const [selectedTask, setSelectedTask] = useState<Task | any>(null);
 
 const handleEditTask = (task: Task) => {
-   console.log('edit task:',task);
+  //  console.log('edit task:',task);
   setSelectedTask(task);
   setIsModalOpen(true);
 };
@@ -618,7 +618,7 @@ return(
                   }}
                 >
                   <Typography variant="h6" gutterBottom   
-                   className={`font-bold flex justify-between items-centers" ${
+                   className={`font-bold flex justify-between items-centers rounded" ${
     status === "todo"
       ? "bg-pink-300"
       : status === "inprogress"
@@ -677,14 +677,14 @@ return(
                          
                           <div className="flex justify-between">
                           <Typography variant="body2" color="textSecondary">
-                            C:{task.category}
+                            {task.category}
                           </Typography>
                           <Typography
                             variant="body2"
                             color="textSecondary"
                             gutterBottom
                           >
-                            D{task.dueDate}
+                            {task.dueDate}
                           </Typography>
                           </div>
                         

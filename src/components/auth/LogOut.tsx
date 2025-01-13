@@ -10,8 +10,8 @@ const LogOut:React.FC = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth); // Sign the user out
-      
-      console.log('User logged out');
+
+      // console.log('User logged out');
       navigate('/'); // Redirect to the login page
     } catch (error) {
       console.error('Error during logout:', error);

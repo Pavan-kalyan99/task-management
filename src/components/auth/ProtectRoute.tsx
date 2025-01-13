@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Spinner component for loading state
 const Spinner: React.FC = () => {
   return (
-    <div className="text-4xl font-bold">
-      <h1>Loading...</h1>
+    <div className="text-4xl font-bold flex h-screen justify-center items-center">
+      <div>        
+        <CircularProgress color="inherit" />
+      </div>
     </div>
   );
 };
@@ -16,7 +19,7 @@ const Spinner: React.FC = () => {
 const ProtectRoute: React.FC = () => {
   const auth = getAuth(); // Firebase auth object
   const navigate = useNavigate();
-  console.log('user:',auth)
+  // console.log('user:',auth)
   const [ok, setOk] = useState<boolean>(false); // State to track access permission
 
   useEffect(() => {

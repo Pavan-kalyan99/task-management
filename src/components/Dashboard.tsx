@@ -210,7 +210,7 @@ const Dashboard:React.FC = () => {
         {/* Add Task Button */}
         <button
           onClick={handleOpen}
-          className="bg-blue-500 text-white px-4 py-2 text-sm rounded hover:bg-blue-600 transition-all"
+          className="bg-blue-500 text-white whitespace-nowrap px-4 py-2 text-sm rounded hover:bg-blue-600 transition-all"
         >
           Add Task
         </button>
