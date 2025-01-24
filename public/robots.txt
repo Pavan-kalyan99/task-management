@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://mytaskerapplication.netlify.app/sitemap.xml
