@@ -90,7 +90,7 @@ const Dashboard:React.FC = () => {
         {/* <h1>Dashboard page</h1> */}
         <Header/>
           {/* tabs */}
-          <div className="flex justify-between items-center border-b border-gray-300 mb-4">
+          <div className="flex justify-between items-center border-b border-gray-300 mb-4 dark:text-white dark:bg-slate-600">
   {/* Left-side tabs */}
   <div className="flex space-x-4">
     <div
@@ -124,7 +124,7 @@ const Dashboard:React.FC = () => {
 </div>
 
         {/* ------------ */}
-       <div className="flex flex-wrap items-center justify-between p-4 bg-gray-100 border border-gray-300 rounded-md">
+       <div className="flex flex-wrap items-center justify-between p-4 bg-gray-100 border border-gray-300 rounded-md dark:text-white dark:bg-slate-600">
     
       {/* Filter Section */}
       <div className="flex items-center space-x-2">
@@ -134,7 +134,7 @@ const Dashboard:React.FC = () => {
         <select
           id="filter"
           onChange={handleFilterChange}
-          className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-slate-400"
         >
           <option value="All">Category</option>
           <option value="work">Work</option>
@@ -202,7 +202,7 @@ const Dashboard:React.FC = () => {
           placeholder="Search tasks by name"
           value={searchQuery}
           onChange={handleSearchChange}
-          className="pl-8 border border-gray-300 rounded px-2 py-1 text-sm w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="pl-8 border border-gray-300 rounded px-2 py-1 text-sm w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-400 dark:text-gray-500"
           />
       </div>
 

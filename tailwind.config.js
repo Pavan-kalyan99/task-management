@@ -5,4 +5,14 @@ export default {
     extend: {},
   },
   plugins: [],
+  // // darkMode: ['selector', '[data-mode="dark"]'],
+  // // darkMode: ['variant', '&:not(.light *)'],
+  // darkMode: ['variant', [
+  //   '@media (prefers-color-scheme: dark) { &:not(.light *) }',
+  //   '&:is(.dark *)',
+  // ]],
+  darkMode: 'class', // or 'media'
+
+
+
 };

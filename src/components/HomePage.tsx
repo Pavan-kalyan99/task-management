@@ -22,13 +22,13 @@ const HomePage:React.FC= () => {
 
 
   return (
-    <div className="bg-slate-200 h-screen flex items-center justify-center">
+    <div className="bg-slate-200  h-screen flex items-center justify-center">
       <div className="text-center">
         {/* Title */}
         <div className='flex  justify-center'>
 
         <FaClipboardList  className='m-2 text-fuchsia-900' style={{width:50,height:50}}/>
-        <h1 className="text-2xl mt-4 font-bold mb-4 text-fuchsia-900">TaskBuddy</h1>
+        <h1 className="text-2xl mt-4 font-bold mb-4 text-fuchsia-900 dark:text-red-500">TaskBuddy</h1>
         </div>
 
         <div>
